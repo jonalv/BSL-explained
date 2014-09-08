@@ -35,7 +35,8 @@
 \newpage
 
 \mbox{}\vfill
-{\noindent \textsf{This work is made available under the Creative Commons Attribution-ShareAlike 4.0 International license.}}
+{\noindent \textsf{This work is made available under the Creative Commons
+Attribution-ShareAlike 4.0 International license.}}
 \vskip 5 ex
 \begin{center}
 	\includegraphics[width=0.3\textwidth]{ccbysa.png}
@@ -48,23 +49,21 @@
 \chapter{Introduction}
 \begin{refsection}
 
-Just to set the record straight, this book is available under a
-Creative Commons~4.0 Attribution ShareAlike license. Therefore,
-feel free to copy this book, share it with friends, or extend it
-with additional code examples.
+Just to set the record straight, this book is available under a Creative
+Commons~4.0 Attribution ShareAlike license. Therefore, feel free to copy this
+book, share it with friends, or extend it with additional code examples.
 
-The next two sections will explain some basics of the Bioclipse
-Scripting Language (\textsc{bsl}) idea~\cite{spjuth2009bioclipse}, and the following chapters describe\index{bsl}
-functionality available in this language. Each chapter is written
-around a particular area.
+The next two sections will explain some basics of the Bioclipse Scripting
+Language (\textsc{bsl}) idea~\cite{spjuth2009bioclipse}, and the following
+chapters describe\index{bsl} functionality available in this language. Each
+chapter is written around a particular area.
 
 \section{Scripting Languages}
 
 Bioclipse supports scripting in two programming languages:
-JavaScript\index{JavaScript} and Groovy\index{Groovy}.
-Support for other programming languages
-is possible, but needs some additional funding for development.
-Both these languages are enriched with domain extensions.
+JavaScript\index{JavaScript} and Groovy\index{Groovy}. Support for other
+programming languages is possible, but needs some additional funding for
+development. Both these languages are enriched with domain extensions.
 
 \section{Extensions}
 
@@ -73,8 +72,8 @@ These managers introduce domain specific functionality, for
 example, in the field of cheminformatics.
 
 Besides managers, Bioclipse also extends the scripting language with a few
-basic, helpful commands. For example, to get documentation you can
-use the \texttt{man} command, for example, for itself:\index{man}
+basic, helpful commands. For example, to get documentation you can use the
+\texttt{man} command, for example, for itself:\index{man}
 \begin{Verbatim}
 man man
 \end{Verbatim}
@@ -83,9 +82,9 @@ BTW, help is a synonym:\index{help}
 help man
 \end{Verbatim}
 
-Another interesting command is the doi command which opens a web page
-with a paper describing the (tool behind the) functionality of a manager.
-For example, to get help for the cdk manager, you type:\index{doi}
+Another interesting command is the doi command which opens a web page with a
+paper describing the (tool behind the) functionality of a manager. For example,
+to get help for the cdk manager, you type:\index{doi}
 
 \begin{Verbatim}
 doi cdk
@@ -93,11 +92,11 @@ doi cdk
 
 \section{Domain Objects}
 
-But script extensions are not enough. If they cannot communicate which
-each other, then it does not make sense. The primary integration is
-dealt with the scripting language.\todo{This is very unclear} But the other thing is that the
-managers need a common data model. This is what the domain objects
-are about\index{domain object}.
+But script extensions are not enough. If they cannot communicate which each
+other, then it does not make sense. The primary integration is dealt with the
+scripting language.\todo{This is very unclear} But the other thing is that the
+managers need a common data model. This is what the domain objects are
+about\index{domain object}.
 
 For example, Bioclipse knows the following domain objects:
 \vspace{0.25cm}
@@ -121,12 +120,11 @@ For example, Bioclipse knows the following domain objects:
 
 \section{The bioclipse manager}\index{manager!bioclipse}\index{bioclipse}
 
-One core manager is the \emph{bioclipse} manager. 
-For example, it has functionality to convert Eclipse-style paths, based
-on projects to full operating system-style paths, which you may
-need in the scripting language. For example, given a project in
-Bioclipse called ``WikiPathways'' with a folder called ``data'', I
-can get the full path with:\index{fullPath}
+One core manager is the \emph{bioclipse} manager. For example, it has
+functionality to convert Eclipse-style paths, based on projects to full
+operating system-style paths, which you may need in the scripting language. For
+example, given a project in Bioclipse called ``WikiPathways'' with a folder
+called ``data'', I can get the full path with:\index{fullPath}
 \begin{Verbatim}
 fullPath = bioclipse.fullPath(
   "/WikiPathways/data/" + species + "/"
@@ -141,9 +139,8 @@ dataMap = bioclipse.fullPath(
 );
 gpmlFiles = new File(dataMap).listFiles()
 \end{Verbatim}
-Furthermore, the bioclipse manager has functionality to get some
-information about the running Bioclipse. You can get the
-version with:\index{version}
+Furthermore, the bioclipse manager has functionality to get some information
+about the running Bioclipse. You can get the version with:\index{version}
 \begin{Verbatim}
 bioclipse.version()
 \end{Verbatim}
@@ -157,9 +154,8 @@ connection:\index{isOnline}
 \begin{Verbatim}
 bioclipse.isOnline()
 \end{Verbatim}
-The manager can be used to validate some of these assumptions.
-For example, it can be used
-to test which Bioclipse version we are running, or make an
+The manager can be used to validate some of these assumptions. For example, it
+can be used to test which Bioclipse version we are running, or make an
 assertion on the minimally required version:\index{requireVersion}
 \begin{Verbatim}
 bioclipse.requireVersion("2.6.1")
@@ -169,9 +165,9 @@ access:\index{assumeOnline}
 \begin{Verbatim}
 bioclipse.assumeOnline()
 \end{Verbatim}
-The bioclipse manager is also the place to look if you would like
-to download a web page, such as the front page of the Dutch
-newspaper "De Volkskrant":\index{download!webpage}
+The bioclipse manager is also the place to look if you would like to download a
+web page, such as the front page of the Dutch newspaper "De
+Volkskrant":\index{download!webpage}
 \begin{Verbatim}
 bioclipse.download("http://www.vk.nl/")
 \end{Verbatim}
@@ -179,14 +175,13 @@ bioclipse.download("http://www.vk.nl/")
 
 \section{The gist manager}\index{manager!gist}\index{gist}
 
-The gist manager is used for downloading gists. A gist is a
-simple way to share small texts on GitHub\index{GitHub},
-such as Bioclipse scripts and get verson control on them.
-For more information see \url{https://gist.github.com/}.
+The gist manager is used for downloading gists. A gist is a simple way to share
+small texts on GitHub\index{GitHub}, such as Bioclipse scripts and get verson
+control on them. For more information see \url{https://gist.github.com/}.
 
-Originally, a gist was a single file, but that is past
-history. The manager followed this change and will now download
-all files from a gist:\index{download!gist}
+Originally, a gist was a single file, but that is past history. The manager
+followed this change and will now download all files from a
+gist:\index{download!gist}
 
 \begin{Verbatim}
 gist.download(6282642)
@@ -195,9 +190,9 @@ gist.download(6282642)
 
 \section{The ui manager}\index{manager!ui}\index{ui}
 
-The second core manager is the \emph{ui} manager. It has user
-interface related functionality. For example, we can use it to
-test if a file is available from the Bioclipse workspace:\index{fileExists}
+The second core manager is the \emph{ui} manager. It has user interface related
+functionality. For example, we can use it to test if a file is available from
+the Bioclipse workspace:\index{fileExists}
 
 \begin{Verbatim}
 knowledgebase = "/WikiPathways/chebi.owl";
@@ -234,9 +229,9 @@ ui.open(cdk.fromSMILES("c1=cc=cc=c1"))
 
 \noindent
 BioJava is a library oriented at \textsc{dna}, \textsc{rna}, and protein
-sequences\cite{holland2008biojava,prlic2012biojava}.\index{BioJava}
-With this manager we can create data models for sequences, such
-as a \textsc{dna} sequence from \textsc{fasta} string:\index{DNAsFromString}
+sequences\cite{holland2008biojava,prlic2012biojava}.\index{BioJava} With this
+manager we can create data models for sequences, such as a \textsc{dna}
+sequence from \textsc{fasta} string:\index{DNAsFromString}
 
 \begin{Verbatim}
 dna = biojava.DNAsFromString("> foo\nGCAT")
@@ -251,8 +246,8 @@ dna = biojava.DNAfromPlainSequence(
 )
 \end{Verbatim}
 With two additional methods, we now have a pipeline to convert
-\textsc{dna}\index{DNA} into \textsc{rna}\index{RNA}, and \textsc{rna} into a protein\index{protein} 
-sequence:\index{transcriptionOf}\index{translationOf}
+\textsc{dna}\index{DNA} into \textsc{rna}\index{RNA}, and \textsc{rna} into a
+protein\index{protein} sequence:\index{transcriptionOf}\index{translationOf}
 
 \begin{Verbatim}
 dna = biojava.DNAfromPlainSequence("GCATATGAA")
@@ -271,18 +266,18 @@ prot = biojava.translationOf(rna)
 BridgeDb is a platform for identifier mapping~\cite{van2010bridgedb}. The
 Bioclipse manager makes its functionality available.
 
-At the core, BridgeDb is a framework, but the project
-also provides actual identifier mapping databases. And, of course, when you
-want to use \textsc{id} mapping functionality, you first need to load such a database.
-The plugin is written such that \textsc{id} mapping databases can be downloaded as
-Bioclipse plugins, and the extension mechanism allows the manager to list
-which mapping databases are available:\index{listIDMapperProviders}
+At the core, BridgeDb is a framework, but the project also provides actual
+identifier mapping databases. And, of course, when you want to use \textsc{id}
+mapping functionality, you first need to load such a database. The plugin is
+written such that \textsc{id} mapping databases can be downloaded as Bioclipse
+plugins, and the extension mechanism allows the manager to list which mapping
+databases are available:\index{listIDMapperProviders}
 \begin{Verbatim}
 dbList = bridgedb.listIDMapperProviders()
 \end{Verbatim}
 
-And then the available mapping databases can be loaded, for example,
-the first in this example:\index{getIDMapper}
+And then the available mapping databases can be loaded, for example, the first
+in this example:\index{getIDMapper}
 
 \begin{Verbatim}
 mbMapper = bridgedb.getIDMapper(dbList.get(0))
@@ -290,7 +285,8 @@ mbMapper = bridgedb.getIDMapper(dbList.get(0))
 Mind you, BridgeDb has separate identifier mapping databases for genes and
 proteins and for metabolites.
 
-And once we have a mapper then we can start converting identifiers:\index{xref}\index{map}
+And once we have a mapper then we can start converting
+identifiers:\index{xref}\index{map}
 
 \begin{Verbatim}
 casXref = bridgedb.xref("50-00-0", "Ca")
@@ -315,47 +311,51 @@ mappings = bridgedb.map(mbMapper, casXref)
 \end{tabular} \\
 
 \noindent
-Basic cheminformatics in Bioclipse is mainly handled by the 
-Chemistry Development Kit\index{Chemistry Development Kit}\index{CDK} (\textsc{cdk})~\cite{Steinbeck2003,Steinbeck2006} and for this there 
-is the \emph{cdk} manager.
+Basic cheminformatics in Bioclipse is mainly handled by the Chemistry
+Development Kit\index{Chemistry Development Kit}\index{CDK}
+(\textsc{cdk})~\cite{Steinbeck2003,Steinbeck2006} and for this there is the
+\emph{cdk} manager.
 
-The cdk manager is one with many features. One is to valid\todo{validate?} \textsc{cas}\todo{explain \textsc{cas}} registry number:\index{CAS registry number}
+The cdk manager is one with many features. One is to valid\todo{validate?}
+\textsc{cas}\todo{explain \textsc{cas}} registry number:\index{CAS registry
+number}
 
 \begin{Verbatim}
 cdk.isValidCAS("50-00-0")
 \end{Verbatim}
-But let's go to the more interesting functionality around chemical graphs.
-For example, let's see how we can create molecular structures from a
-SMILES string:\index{SMILES}\index{fromSMILES}
+But let's go to the more interesting functionality around chemical graphs. For
+example, let's see how we can create molecular structures from a SMILES
+string:\index{SMILES}\index{fromSMILES}
 
 \begin{Verbatim}
 mol = cdk.fromSMILES("COC")
 \end{Verbatim}
-Normally, structure diagrams are generated without explicit hydrogens.
-But we can easily add them:\index{hydrogens}\index{addExplicitHydrogens}
+Normally, structure diagrams are generated without explicit hydrogens. But we
+can easily add them:\index{hydrogens}\index{addExplicitHydrogens}
 
 \begin{Verbatim}
 cdk.addExplicitHydrogens(mol)
 \end{Verbatim}
-We can then calculate a number of properties, including the molecular 
-mass\index{molecular mass}, total formal charge\index{charge}, and
-molecular formula\index{molecular formula}:\index{calculateMass}\index{totalFormalCharge}\index{molecularFormula}
+We can then calculate a number of properties, including the molecular
+mass\index{molecular mass}, total formal charge\index{charge}, and molecular
+formula\index{molecular
+formula}:\index{calculateMass}\index{totalFormalCharge}\index{molecularFormula}
 
 \begin{Verbatim}
 cdk.calculateMass(mol)
 cdk.totalFormalCharge(mol)
 cdk.molecularFormula(mol)
 \end{Verbatim}
-Additionally, we can also inspect some of in the information present
-in the model:\index{has2d}\index{has3d}\index{isConnected}
+Additionally, we can also inspect some of in the information present in the
+model:\index{has2d}\index{has3d}\index{isConnected}
 
 \begin{Verbatim}
 cdk.has2d(mol)
 cdk.has3d(mol)
 cdk.isConnected(mol)
 \end{Verbatim}
-The cdk manager is also central to file support. Before we load it, we
-may want to just check the file format\index{file format}:\index{determineFormat}
+The cdk manager is also central to file support. Before we load it, we may want
+to just check the file format\index{file format}:\index{determineFormat}
 
 \begin{Verbatim}
 cdk.determineFormat(
@@ -369,8 +369,7 @@ mol = cdk.loadMolecule(
   "/ACS Drug Disclosures/AZD5423.cml"
 )
 \end{Verbatim}
-Saving is quite similar, and there are two methods for the two main
-formats:
+Saving is quite similar, and there are two methods for the two main formats:
 
 \begin{Verbatim}
 cdk.saveCML(mol, "/Test/mol.cml")
@@ -386,9 +385,9 @@ cdk.saveMDLMolfile(mol, "/Test/mol.mol")
 \end{tabular} \\
 
 \noindent
-The \texttt{cdx} manager is also based on the \textsc{cdk} and exposes functionality
-more oriented at \textsc{cdk} developers. For example, we can create a String
-representation of the full data model for debugging
+The \texttt{cdx} manager is also based on the \textsc{cdk} and exposes
+functionality more oriented at \textsc{cdk} developers. For example, we can
+create a String representation of the full data model for debugging
 purposes:\index{debug}
 
 \begin{Verbatim}
@@ -419,28 +418,25 @@ cdx.perceiveCDKAtomTypes(mol)
 
 \noindent
 The \texttt{inchi} manager makes functionality from the InChI
-standard\index{InChI}
-available~\cite{heller2013inchi,spjuth2013applications}.
-The InChI library is not available as a Java library, but is
-included as a binary for a selection of platforms and operating
-systems. This means that we cannot assume the InChI
-functionality is always available in Bioclipse. Furthermore,
-we need to load the library:
+standard\index{InChI} available~\cite{heller2013inchi,spjuth2013applications}.
+The InChI library is not available as a Java library, but is included as a
+binary for a selection of platforms and operating systems. This means that we
+cannot assume the InChI functionality is always available in Bioclipse.
+Furthermore, we need to load the library:
 
 \begin{Verbatim}
 inchi.load()
 inchi.isLoaded()
 \end{Verbatim}
-But when that has succeeded, we can start minting
-InChIs:\index{generate!InChI}
+But when that has succeeded, we can start minting InChIs:\index{generate!InChI}
 
 \begin{Verbatim}
 anInChI = inchi.generate(
   opsin.parseIUPACName("methane")
 )
 \end{Verbatim}
-The returned value is a class called InChI and we can get both
-the full InChI as well as the InChIKey from it:\index{InChIKey}
+The returned value is a class called InChI and we can get both the full InChI
+as well as the InChIKey from it:\index{InChIKey}
 
 \begin{Verbatim}
 fullInChI = anInChI.getValue()
@@ -487,21 +483,21 @@ mol = opsin.parseIUPACName(
 \end{tabular} \\
 
 \noindent
-The \texttt{rdf} manager can be used to handle Resource Description
-Framework (\textsc{rdf}) data~\cite{willighagen2011linking}.
-The basic unit of information in \textsc{rdf} is a
-triple and these triples are stored in a \emph{triple store}.
-A file based store can be created with this code:\index{createStore}
+The \texttt{rdf} manager can be used to handle Resource Description Framework
+(\textsc{rdf}) data~\cite{willighagen2011linking}. The basic unit of
+information in \textsc{rdf} is a triple and these triples are stored in a
+\emph{triple store}. A file based store can be created with this
+code:\index{createStore}
 
 \begin{Verbatim}
 base = rdf.createStore("/tmp/chebiowl")
 \end{Verbatim}
-Here, the path is a full operating system-style path, and this one
-works only on Unix/Linux/BSD systems.
+Here, the path is a full operating system-style path, and this one works only
+on Unix/Linux/BSD systems.
 
-As soon as you have a store, you can start adding triples to it.
-For example, when they come from a file, you may want to do
-something like this:\index{importFile}
+As soon as you have a store, you can start adding triples to it. For example,
+when they come from a file, you may want to do something like
+this:\index{importFile}
 
 \begin{Verbatim}
 knowledgebase = "/WikiPathways/chebi.owl";
@@ -532,14 +528,15 @@ rdf.addDataProperty(knowledgebase,
 )
 \end{Verbatim}
 
-You can get the number of triples held in the store with the
-size method:\index{size}
+You can get the number of triples held in the store with the size
+method:\index{size}
 
 \begin{Verbatim}
 rdf.size(knowledgebase);
 \end{Verbatim}
 
-And the see the collected triples as Turtle\todo{unclear, explain this a bit more}, you can use:\index{Turtle}\index{asTurtle}
+And the see the collected triples as Turtle\todo{unclear, explain this a bit
+more}, you can use:\index{Turtle}\index{asTurtle}
 
 \begin{Verbatim}
 rdf.asTurtle(knowledgebase);
@@ -554,13 +551,12 @@ rdf.asTurtle(knowledgebase);
 \end{tabular} \\
 
 \noindent
-The isbjørn manager uses the Semantic Web to find information about
-chemicals, by taking advantage of the Linked Data approaches.
+The isbjørn manager uses the Semantic Web to find information about chemicals,
+by taking advantage of the Linked Data approaches.
 
-There are two ways to initiate a search: the first is based on a
-\textsc{uri} (Uniform Resource Identifier)\index{URI}
-for a particular compound, for example, a ChemSpider\index{ChemSpider}
-\textsc{uri}:\index{findInfo}
+There are two ways to initiate a search: the first is based on a \textsc{uri}
+(Uniform Resource Identifier)\index{URI} for a particular compound, for
+example, a ChemSpider\index{ChemSpider} \textsc{uri}:\index{findInfo}
 
 \begin{Verbatim}
 knowledgeList = isbjørn.findInfo(
@@ -593,20 +589,19 @@ ui.open(html)
 \end{tabular} \\
 
 \noindent
-The \texttt{owlapi} manager exposes functionality of the \textsc{owlapi}\index{OWLAPI}
-library~\cite{Horridge2011}, to deal with Web Ontology Languages\index{Web Ontology Languages}
-(\textsc{owl})\index{OWL} ontologies. The manager is oriented at ontologies
-in the Bioclipse workspace. Thus, loading an ontology works
-like:\index{load}
+The \texttt{owlapi} manager exposes functionality of the
+\textsc{owlapi}\index{OWLAPI} library~\cite{Horridge2011}, to deal with Web
+Ontology Languages\index{Web Ontology Languages} (\textsc{owl})\index{OWL}
+ontologies. The manager is oriented at ontologies in the Bioclipse workspace.
+Thus, loading an ontology works like:\index{load}
 
 \begin{Verbatim}
 ontology = owlapi.load(
   "/eNanoMapper/enanomapper.owl", null
 );
 \end{Verbatim}
-The second parameter is a mapper, which can be used to indicate
-where imported ontologies can be locally found.
-For example:\index{addMapping}
+The second parameter is a mapper, which can be used to indicate where imported
+ontologies can be locally found. For example:\index{addMapping}
 
 \begin{Verbatim}
 mapper = null; // initially no mapper
@@ -629,8 +624,8 @@ You can always see what \textsc{iri}s are mapped with:\index{listMappings}
 owlapi.listMappings(mapper)
 \end{Verbatim}
 
-Once you have loaded an ontology, you can list all
-the imported ontologies:\index{getImportedOntologies}
+Once you have loaded an ontology, you can list all the imported
+ontologies:\index{getImportedOntologies}
 
 \begin{Verbatim}
 imported = owlapi.getImportedOntologies(ontology)
@@ -640,8 +635,8 @@ for (var i = 0; i < imported.size(); i++) {
   )
 }
 \end{Verbatim}
-Similarly, you can list all the classes defined by the
-ontology or imported ontologies:\index{showClasses}
+Similarly, you can list all the classes defined by the ontology or imported
+ontologies:\index{showClasses}
 
 \begin{Verbatim}
 imported = owlapi.getImportedOntologies(ontology)
@@ -651,8 +646,8 @@ for (var i = 0; i < imported.size(); i++) {
   )
 }
 \end{Verbatim}
-Finally, the \textsc{owlapi} also provide functionality to check for
-profile violations:\index{checkVioloations}
+Finally, the \textsc{owlapi} also provide functionality to check for profile
+violations:\index{checkVioloations}
 
 \begin{Verbatim}
 owlapi.checkVioloations(ontology)
@@ -679,7 +674,8 @@ owlapi.checkVioloations(ontology)
 
 \noindent
 The biows manager allows you to retrieve information from biology-related
-webservices, including the Uniprot database:\index{UniProt}\index{queryUniProtKB}:
+webservices, including the Uniprot
+database:\index{UniProt}\index{queryUniProtKB}:
 
 \begin{Verbatim}
 biows.queryUniProtKB("P38398")
@@ -703,25 +699,22 @@ biows.queryRefseq("NM_000059")
 \end{tabular} \\
 
 \noindent
-The chemspider manager makes functionality avaiable to interact
-with the ChemSpider database\index{ChemSpider}. For example, we
-can download a structure with a chemspider identifier
-number:\index{download!chemspider}
+The chemspider manager makes functionality avaiable to interact with the
+ChemSpider database\index{ChemSpider}. For example, we can download a structure
+with a chemspider identifier number:\index{download!chemspider}
 
 \begin{Verbatim}
 chemspider.download(9606)
 \end{Verbatim}
-You can also use ChemSpider to resolve InChIKeys to entries
-in the database:\index{InChIKey}
+You can also use ChemSpider to resolve InChIKeys to entries in the
+database:\index{InChIKey}
 
 \begin{Verbatim}
 chemspider.resolve("RCINICONZNJXQF-MZXODVADSA-N")
 \end{Verbatim}
-Some methods require a security token that can be set via
-the preferences (see
-\url{http://www.chemspider.com/AboutServices.aspx}).
-But when that is done, 
-we can search specific compounds:\index{exactSearch}
+Some methods require a security token that can be set via the preferences (see
+\url{http://www.chemspider.com/AboutServices.aspx}). But when that is done, we
+can search specific compounds:\index{exactSearch}
 
 \begin{Verbatim}
 chemspider.exactSearch(
@@ -753,13 +746,13 @@ chemspider.substructureSearch(
 \end{tabular} \\
 
 \noindent
-OpenTox is a platform for toxicology\index{OpenTox}, allowing for sharing of data as well
-as creating and running computational models\cite{hardy2010collaborative}.
-The opentox manager integrates much of its
+OpenTox is a platform for toxicology\index{OpenTox}, allowing for sharing of
+data as well as creating and running computational
+models\cite{hardy2010collaborative}. The opentox manager integrates much of its
 functionality\cite{willighagen2011computational}.
 
-There are various methods to list what is available. Some information
-is available from a central registration server, e.g.
+There are various methods to list what is available. Some information is
+available from a central registration server, e.g.
 \url{http://apps.ideaconsult.net:8080/ontology/}:\index{listAlgorithms}\index{listDescriptors}\index{listModels}
 
 \begin{Verbatim}
@@ -768,26 +761,26 @@ algorithms = opentox.listAlgorithms(registry);
 descriptors = opentox.listDescriptors(registry);
 models = opentox.listModels(registry);
 \end{Verbatim}
-Similarly, using a particular OpenTox service, e.g. an \textsc{ambit}\index{AMBIT}
-instance at
-\url{http://apps.ideaconsult.net:8080/ambit2/}\cite{jeliazkova2011ambit},
-we can list data sets
-and features (properties):\index{listDataSets}\index{listFeatures}
+Similarly, using a particular OpenTox service, e.g. an
+\textsc{ambit}\index{AMBIT} instance at
+\url{http://apps.ideaconsult.net:8080/ambit2/}\cite{jeliazkova2011ambit}, we
+can list data sets and features
+(properties):\index{listDataSets}\index{listFeatures}
 
 \begin{Verbatim}
 service = "http://apps.ideaconsult.net:8080/ambit2/";
 dataSets = opentox.listDataSets(service);
 features = opentox.listFeatures(service);
 \end{Verbatim}
-Instead of listing, we can also search for various types, such as
-the ToxTree models\index{ToxTree}\cite{patlewicz2008evaluation}:
+Instead of listing, we can also search for various types, such as the ToxTree
+models\index{ToxTree}\cite{patlewicz2008evaluation}:
 
 \begin{Verbatim}
 models = opentox.searchModels(registry, "ToxTree");
 \end{Verbatim}
 
-We can select one of the available models, and then make a prediction
-for a compound:
+We can select one of the available models, and then make a prediction for a
+compound:
 \begin{Verbatim}
 toxTreeModel =
   "http://apps.ideaconsult.net:8080/ambit2/model/3";
@@ -805,10 +798,9 @@ opentox.predictWithModel(
 \end{tabular} \\
 
 \noindent
-The pubchem manager makes functionality available to interact
-with the PubChem database\index{PubChem}. For example, we
-can download a structure with a PubChem compound identifier
-number:\index{download!pubchem}
+The pubchem manager makes functionality available to interact with the PubChem
+database\index{PubChem}. For example, we can download a structure with a
+PubChem compound identifier number:\index{download!pubchem}
 
 \begin{Verbatim}
 pubchem.download(2244)
@@ -826,14 +818,13 @@ pubchem.search("tamoxifen")
 
 \section{The openphacts manager}\index{manager!openphacts}\index{openphacts}
 
-Open PHACTS\index{Open PHACTS} is a semantic web-based knowledge platform
-under development to
-support drug discovery~\cite{Williams2012}. It provides a REST-like interface
-of which some of the methods are exposed by the openphacts managers. Because
-it is a semantic web platform, compounds, diseases, proteins, and pathways 
-are all identified with URIs. Practically, however, we start with a name,
-but usign the Open PHACTS ``identity resolution service'' (IRS) we can convert
-names into URIs:\index{search!openphacts}
+Open PHACTS\index{Open PHACTS} is a semantic web-based knowledge platform under
+development to support drug discovery~\cite{Williams2012}. It provides a
+REST-like interface of which some of the methods are exposed by the openphacts
+managers. Because it is a semantic web platform, compounds, diseases, proteins,
+and pathways are all identified with URIs. Practically, however, we start with
+a name, but usign the Open PHACTS ``identity resolution service'' (IRS) we can
+convert names into URIs:\index{search!openphacts}
 
 \begin{Verbatim}
 cwHits = openphacts.lookUpCompounds("aspirin")
@@ -843,8 +834,8 @@ From the list, we can get a URI with:
 \begin{Verbatim}
 compoundURI = cwHits.get(0).getURI()
 \end{Verbatim}
-Another approach to look up a URI for a compound and, as such, find the compound
-in the knowledge base, is to start with an IMolecule:
+Another approach to look up a URI for a compound and, as such, find the
+compound in the knowledge base, is to start with an IMolecule:
 
 \begin{Verbatim}
 compoundURI = openphacts.getURI(
@@ -856,19 +847,19 @@ If you want to look up information about the search hits, you do:
 \begin{Verbatim}
 hitsInfo = openphacts.getCompoundsInfo(cwHits)
 \end{Verbatim}
-Future versions of the manager will likely provide alternative APIs to
-get compound information.
+Future versions of the manager will likely provide alternative APIs to get
+compound information.
 
-Similar compounds can be looked up using the Tanimoto distance measure,
-and a similarity cut off of 0.8 by default:
+Similar compounds can be looked up using the Tanimoto distance measure, and a
+similarity cut off of 0.8 by default:
 
 \begin{Verbatim}
 similarCompounds = openphacts.findSimilar(
   cdk.fromSMILES("CC(=O)OC1=CC=CC=C1C(=O)O")
 )
 \end{Verbatim}
-If you find that list too long, you can increase the minimal similarity to,
-for example, 0.95:
+If you find that list too long, you can increase the minimal similarity to, for
+example, 0.95:
 
 \begin{Verbatim}
 similarCompounds = openphacts.findSimilar(
