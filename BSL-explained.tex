@@ -275,7 +275,6 @@ databases are available:\index{listIDMapperProviders}
 \begin{Verbatim}
 dbList = bridgedb.listIDMapperProviders()
 \end{Verbatim}
-
 And then the available mapping databases can be loaded, for example, the first
 in this example:\index{getIDMapper}
 
@@ -551,8 +550,8 @@ rdf.asTurtle(knowledgebase);
 \end{tabular} \\
 
 \noindent
-The isbjørn manager uses the Semantic Web to find information about chemicals,
-by taking advantage of the Linked Data approaches.
+The \texttt{isbjørn} manager uses the Semantic Web to find information about
+chemicals, by taking advantage of the Linked Data approaches.
 
 There are two ways to initiate a search: the first is based on a \textsc{uri}
 (Uniform Resource Identifier)\index{URI} for a particular compound, for
@@ -623,7 +622,6 @@ You can always see what \textsc{iri}s are mapped with:\index{listMappings}
 \begin{Verbatim}
 owlapi.listMappings(mapper)
 \end{Verbatim}
-
 Once you have loaded an ontology, you can list all the imported
 ontologies:\index{getImportedOntologies}
 
@@ -778,7 +776,6 @@ models\index{ToxTree}\cite{patlewicz2008evaluation}:
 \begin{Verbatim}
 models = opentox.searchModels(registry, "ToxTree");
 \end{Verbatim}
-
 We can select one of the available models, and then make a prediction for a
 compound:
 \begin{Verbatim}
