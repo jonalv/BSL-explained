@@ -1,0 +1,14 @@
+*.swp
+BSL-explained.aux
+BSL-explained.bbl
+BSL-explained.bcf
+BSL-explained.blg
+BSL-explained.fdb_latexmk
+BSL-explained.fls
+BSL-explained.idx
+BSL-explained.ilg
+BSL-explained.ind
+BSL-explained.log
+BSL-explained.pdf
+BSL-explained.run.xml
+BSL-explained.toc
