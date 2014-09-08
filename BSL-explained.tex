@@ -16,10 +16,21 @@
 \LetLtxMacro{\oldtodo}{\todo}
 \renewcommand{\todo}[1]{{\color{white}\oldtodo{\textsf{#1}}}}
 
+\usepackage{hyperref}
 
 %\setlength{\parindent}{0cm} % egonw, do we need to have a word about this?
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{xleftmargin=5mm}
 
+% from: http://www.joachim-breitner.de/blog/archives/519-Nicer-URL-formatting-in-LaTeX.html
+% changes look of URLs
+\urlstyle{sf}
+\makeatletter
+    \let\UrlSpecialsOld\UrlSpecials
+    \def\UrlSpecials{\UrlSpecialsOld\do\/{\Url@slash}\do\_{\Url@underscore}}%
+    \def\Url@slash{\@ifnextchar/{\kern-.11em\mathchar47\kern-.2em}%
+        {\kern-.0em\mathchar47\kern-.08em\penalty\UrlBigBreakPenalty}}
+        \def\Url@underscore{\nfss@text{\leavevmode \kern.06em\vbox{\hrule\@width.3em}}}
+\makeatother
 
 \makeindex
 
@@ -53,10 +64,127 @@ Just to set the record straight, this book is available under a Creative
 Commons~4.0 Attribution ShareAlike license. Therefore, feel free to copy this
 book, share it with friends, or extend it with additional code examples.
 
-The next two sections will explain some basics of the Bioclipse Scripting
-Language (\textsc{bsl}) idea~\cite{spjuth2009bioclipse}, and the following
-chapters describe\index{bsl} functionality available in this language. Each
-chapter is written around a particular area.
+We will explain some basics of the Bioclipse Scripting Language (\textsc{bsl})
+idea~\cite{spjuth2009bioclipse}, and then the following chapters will
+describe\index{bsl} functionality available in this language. Each chapter is
+written around a particular area. But before we get to scripting let's look at
+how to get Bioclipse running!
+
+\section{Downloading, installing and updating Bioclipse}
+This section gives a short introduction for how tog get started with Bioclipse
+and is mainly cut from the ``Getting started with Bioclipse 2.6'' folder. For
+the complete Getting started text see~\ref{BioclipseGettingStarted}.
+
+\subsection{Downloading}
+Bioclipse for Windows comes in a couple of different packages. Either as a .zip
+file or as an installation program and either as 32 or 64 bit. To find out if
+you have 32 or 64 bit in Windows \textsc{xp} and Windows~7 right click the icon
+named \texttt{My} \texttt{computer} and choose \texttt{properties}. On
+Windows~8 you need to go to \texttt{System} \texttt{and} \texttt{Security} and
+then \texttt{view} \texttt{basic} \texttt{information} \texttt{about}
+\texttt{your} \texttt{computer}.  Normally, the installation program should be
+the obvious choice but if, for whatever reason, that doesn't work you can use
+the zip file. The Linux version is packaged as a tar.gz file and the Mac
+version comes as a .dmg file. These packages are available from:
+
+\vskip 0.5\baselineskip
+{\footnotesize \noindent \url{https://sourceforge.net/projects/bioclipse/files/bioclipse2/bioclipse2.6.1/}.}
+
+\begin{center}
+    \fbox{\includegraphics[width=0.95\textwidth]{images/Downloadpage.png}}
+\end{center}
+
+\subsection{Installing}
+The installation procedure is differs between the operating systems. Bioclipse
+needs a Java installation to be present on the computer. To install Java, visit
+\url{www.java.com} and follow the instructions. If you are not sure whether or
+not you have Java, you can also check that on \url{www.java.com}.
+
+\Needspace{8\baselineskip}
+\subsubsection{Windows XP, 7 and 8}
+If you downloaded Bioclipse as a .zip file you need to unzip it to a location
+where you want it and then start it from the Bioclipse.exe file. If you
+downloaded the installation program simply double click the file to start the
+installation program which will install Bioclipse on your machine and add it to
+the Start menu (on Windows~\textsc{xp}, and Windows~7).
+\begin{center}
+\includegraphics[width=0.7\textwidth]{images/WindowsInstaller.png}
+\end{center}
+\Needspace{8\baselineskip}
+\subsubsection{Mac OS X}
+The installation on Mac consists of dragging the .app file to the Applications
+folder. You then start Bioclipse from the Applications folder just like any
+other program. 
+\begin{center}
+\includegraphics[width=0.5\textwidth]{images/MacInstaller.png}
+\end{center}
+\subsubsection{Ubuntu Linux}
+There is nothing special about the Linux distribution Ubuntu with regards to
+Bioclipse and it should work fine with other distributions as well. However we
+have tested Ubuntu and show how to get it running on Ubuntu. Hopefully you can
+adapt the instructions to your local distribution.
+The Linux version of Bioclipse comes packed in a tar.gz file. All you need to
+do is to unpack the file to some suitable location and start from there.
+Bioclipse uses Java and has been tested with OpenJDK on Ubuntu Linux and Debian
+GNU/Linux. 
+
+OpenJDK can be found by searching for `Java' at the Ubuntu software center.
+When you have found OpenJDK there, Java can be installed by just a simple
+click. The way to install OpenJDK can differ in other distributions of Linux,
+but as soon as you have installed OpenJDK Bioclipse should be runnable. When
+Java has been properly installed, Bioclipse can be started by double clicking
+the file named bioclipse.
+\begin{center}
+\includegraphics[width=1\textwidth]{images/Java7onUbuntu.png}
+\end{center}
+
+\Needspace{17\baselineskip}
+\subsection{Starting Bioclipse for the first time}
+When you start Bioclipse for the first time a Welcome page is shown.
+\begin{center}
+\includegraphics[width=1\textwidth]{images/WelcomePage.png}
+\end{center}
+Spend some time looking at the various sub pages. Make sure to import the
+sample data if you want some data to play with. Just the empty workspace makes
+it difficult to test the different parts of Bioclipse.
+\begin{center}
+\includegraphics[width=1\textwidth]{images/installSampledata.png}
+\end{center}
+The arrow in the upper corner brings you to the workbench. If you didn't try
+the \texttt{Introductory} \texttt{Bioclipse} \texttt{tutorial} from the Welcome
+page it is also reachable from the \texttt{Help} menu by choosing \texttt{Cheat
+Sheets} and then selecting the \texttt{Using the Bioclipse Workbench} cheat
+sheet. It might be a good idea to spend some time following the instructions in
+this cheat sheet before you start exploring Bioclipse on your own.
+\begin{center}
+\includegraphics[width=1\textwidth]{images/cheatSheet.png}
+\end{center}
+
+\subsection{Updating and installing new features} 
+Bioclipse is a highly customizable piece of software. New features and new
+versions of features can be installed as needed in your Bioclipse
+installation.
+
+When Bioclipse starts, it checks the update site for new versions of what is
+already installed. If new versions are found, you are given the option to
+download them. If you choose to do so, the new versions will be downloaded.
+Once this is done, Bioclipse must be restarted to allow the new features to be
+used.
+
+Bioclipse ships with, among other things, components for handling molecules but
+more advanced things like, for example, OpenTox support must be installed
+separately. To do this click \texttt{Install} in the top menu and then choose
+\texttt{New}~\texttt{Feature}\ldots\ This brings up a dialog showing all
+features available for installation. By clicking the check box named
+\texttt{Show} \texttt{installed} you can also see what features are already
+installed in your workbench.
+
+\begin{center}
+\includegraphics[width=0.95\textwidth]{images/installFeatures.png}
+\end{center}
+Select what you want to install, accept the licenses and wait while Bioclipse
+restarts with the new features.
+
 
 \section{Scripting Languages}
 
