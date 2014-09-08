@@ -231,6 +231,8 @@ ui.open(cdk.fromSMILES("c1=cc=cc=c1"))
 \textbf{Feature} & Bioinformatics Feature \\
 \textbf{Update site} & \url{} \\
 \end{tabular}\\
+
+\noindent
 BioJava is a library oriented at \textsc{dna}, \textsc{rna}, and protein
 sequences\cite{holland2008biojava,prlic2012biojava}.\index{BioJava}
 With this manager we can create data models for sequences, such
@@ -265,6 +267,7 @@ prot = biojava.translationOf(rna)
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 BridgeDb is a platform for identifier mapping~\cite{van2010bridgedb}. The
 Bioclipse manager makes its functionality available.
 
@@ -309,8 +312,9 @@ mappings = bridgedb.map(mbMapper, casXref)
 \begin{tabular}{ll}
 \textbf{Feature} & Bioclipse Chemoinformatics \\
 \textbf{Update site} & \url{} \\
-\end{tabular}
+\end{tabular} \\
 
+\noindent
 Basic cheminformatics in Bioclipse is mainly handled by the 
 Chemistry Development Kit\index{Chemistry Development Kit}\index{CDK} (\textsc{cdk})~\cite{Steinbeck2003,Steinbeck2006} and for this there 
 is the \emph{cdk} manager.
@@ -381,6 +385,7 @@ cdk.saveMDLMolfile(mol, "/Test/mol.mol")
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 The \texttt{cdx} manager is also based on the \textsc{cdk} and exposes functionality
 more oriented at \textsc{cdk} developers. For example, we can create a String
 representation of the full data model for debugging
@@ -412,6 +417,7 @@ cdx.perceiveCDKAtomTypes(mol)
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 The \texttt{inchi} manager makes functionality from the InChI
 standard\index{InChI}
 available~\cite{heller2013inchi,spjuth2013applications}.
@@ -448,6 +454,7 @@ InChIKey = anInChI.getKey()
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 The opsin manager makes functionality from the \textsc{opsin}\index{OPSIN}
 available: convert \textsc{iupac}\index{IUPAC name} names to chemical
 structures~\cite{lowe2011chemical}.
@@ -479,6 +486,7 @@ mol = opsin.parseIUPACName(
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 The \texttt{rdf} manager can be used to handle Resource Description
 Framework (\textsc{rdf}) data~\cite{willighagen2011linking}.
 The basic unit of information in \textsc{rdf} is a
@@ -545,6 +553,7 @@ rdf.asTurtle(knowledgebase);
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 The isbjørn manager uses the Semantic Web to find information about
 chemicals, by taking advantage of the Linked Data approaches.
 
@@ -583,6 +592,7 @@ ui.open(html)
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 The \texttt{owlapi} manager exposes functionality of the \textsc{owlapi}\index{OWLAPI}
 library~\cite{Horridge2011}, to deal with Web Ontology Languages\index{Web Ontology Languages}
 (\textsc{owl})\index{OWL} ontologies. The manager is oriented at ontologies
@@ -666,6 +676,8 @@ owlapi.checkVioloations(ontology)
 \textbf{Feature} & Bioinformatics Feature \\
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
+
+\noindent
 The biows manager allows you to retrieve information from biology-related
 webservices, including the Uniprot database:\index{UniProt}\index{queryUniProtKB}:
 
@@ -690,6 +702,7 @@ biows.queryRefseq("NM_000059")
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 The chemspider manager makes functionality avaiable to interact
 with the ChemSpider database\index{ChemSpider}. For example, we
 can download a structure with a chemspider identifier
@@ -739,6 +752,7 @@ chemspider.substructureSearch(
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 OpenTox is a platform for toxicology\index{OpenTox}, allowing for sharing of data as well
 as creating and running computational models\cite{hardy2010collaborative}.
 The opentox manager integrates much of its
@@ -790,6 +804,7 @@ opentox.predictWithModel(
 \textbf{Update site} & \url{} \\
 \end{tabular} \\
 
+\noindent
 The pubchem manager makes functionality available to interact
 with the PubChem database\index{PubChem}. For example, we
 can download a structure with a PubChem compound identifier
