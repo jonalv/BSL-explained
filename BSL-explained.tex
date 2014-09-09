@@ -16,6 +16,10 @@
 \LetLtxMacro{\oldtodo}{\todo}
 \renewcommand{\todo}[1]{{\color{white}\oldtodo{\textsf{#1}}}}
 
+\semiisopage[9]
+\checkandfixthelayout
+
+
 \usepackage{hyperref}
 
 %\setlength{\parindent}{0cm} % egonw, do we need to have a word about this?
@@ -32,6 +36,11 @@
         \def\Url@underscore{\nfss@text{\leavevmode \kern.06em\vbox{\hrule\@width.3em}}}
 \makeatother
 
+\setsecheadstyle{\Large}
+\setsubsecheadstyle{\scshape}
+\setsubsubsecheadstyle{\itshape}
+\setparaheadstyle{\itshape}
+
 \makeindex
 
 \hyphenation{Java-Script}
@@ -44,7 +53,7 @@
 \maketitle
 
 \newpage
-
+\pagestyle{plain}
 \mbox{}\vfill
 {\noindent \textsf{This work is made available under the Creative Commons
 Attribution-ShareAlike 4.0 International license.}}
@@ -76,10 +85,10 @@ and is mainly cut from the ``Getting started with Bioclipse 2.6'' folder. For
 the complete Getting started text see~\ref{BioclipseGettingStarted}.
 
 \subsection{Downloading}
-Bioclipse for Windows comes in a couple of different packages. Either as a .zip
-file or as an installation program and either as 32 or 64 bit. To find out if
-you have 32 or 64 bit in Windows \textsc{xp} and Windows~7 right click the icon
-named \texttt{My} \texttt{computer} and choose \texttt{properties}. On
+Bioclipse for Windows comes in a couple of different packages. Either as a
+\texttt{.zip} file or as an installation program and either as 32 or 64 bit. To
+find out if you have 32 or 64 bit in Windows~XP  and Windows~7 right click the
+icon named \texttt{My} \texttt{computer} and choose \texttt{properties}. On
 Windows~8 you need to go to \texttt{System} \texttt{and} \texttt{Security} and
 then \texttt{view} \texttt{basic} \texttt{information} \texttt{about}
 \texttt{your} \texttt{computer}.  Normally, the installation program should be
@@ -95,28 +104,28 @@ version comes as a .dmg file. These packages are available from:
 \end{center}
 
 \subsection{Installing}
-The installation procedure is differs between the operating systems. Bioclipse
+The installation procedure differs between the operating systems. Bioclipse
 needs a Java installation to be present on the computer. To install Java, visit
 \url{www.java.com} and follow the instructions. If you are not sure whether or
 not you have Java, you can also check that on \url{www.java.com}.
 
 \Needspace{8\baselineskip}
 \subsubsection{Windows XP, 7 and 8}
-If you downloaded Bioclipse as a .zip file you need to unzip it to a location
-where you want it and then start it from the Bioclipse.exe file. If you
-downloaded the installation program simply double click the file to start the
-installation program which will install Bioclipse on your machine and add it to
-the Start menu (on Windows~\textsc{xp}, and Windows~7).
+If you downloaded Bioclipse as a \texttt{.zip} file you need to unzip it to a
+location where you want it and then start it from the \texttt{Bioclipse.exe}
+file. If you downloaded the installation program simply double click the file
+to start the installation program which will install Bioclipse on your machine
+and add it to the Start menu (on Windows~XP, and Windows~7).
 \begin{center}
-\includegraphics[width=0.7\textwidth]{images/WindowsInstaller.png}
+\includegraphics[width=0.8\textwidth]{images/WindowsInstaller.png}
 \end{center}
 \Needspace{8\baselineskip}
 \subsubsection{Mac OS X}
-The installation on Mac consists of dragging the .app file to the Applications
-folder. You then start Bioclipse from the Applications folder just like any
-other program. 
+The installation on Mac consists of dragging the \texttt{.app} file to the
+Applications folder. You then start Bioclipse from the Applications folder just
+like any other program. 
 \begin{center}
-\includegraphics[width=0.5\textwidth]{images/MacInstaller.png}
+\includegraphics[width=0.7\textwidth]{images/MacInstaller.png}
 \end{center}
 \subsubsection{Ubuntu Linux}
 There is nothing special about the Linux distribution Ubuntu with regards to
@@ -134,9 +143,11 @@ click. The way to install OpenJDK can differ in other distributions of Linux,
 but as soon as you have installed OpenJDK Bioclipse should be runnable. When
 Java has been properly installed, Bioclipse can be started by double clicking
 the file named bioclipse.
+\vfill
 \begin{center}
 \includegraphics[width=1\textwidth]{images/Java7onUbuntu.png}
 \end{center}
+\vfill\vfill
 
 \Needspace{17\baselineskip}
 \subsection{Starting Bioclipse for the first time}
@@ -209,7 +220,6 @@ BTW, help is a synonym:\index{help}
 \begin{Verbatim}
 help man
 \end{Verbatim}
-
 Another interesting command is the doi command which opens a web page with a
 paper describing the (tool behind the) functionality of a manager. For example,
 to get help for the cdk manager, you type:\index{doi}
