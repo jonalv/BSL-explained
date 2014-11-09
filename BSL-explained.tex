@@ -877,6 +877,57 @@ chemspider.substructureSearch(
 \section{The google manager}\index{manager!google}\index{google}
 \todo{Egon should write this}
 
+\section{The openphacts manager}\index{manager!openphacts}\index{openphacts}
+
+Open PHACTS\index{Open PHACTS} is a semantic web-based knowledge platform under
+development to support drug discovery~\cite{Williams2012}. It provides a
+REST-like interface of which some of the methods are exposed by the openphacts
+managers. Because it is a semantic web platform, compounds, diseases, proteins,
+and pathways are all identified with URIs. Practically, however, we start with
+a name, but usign the Open PHACTS ``identity resolution service'' (IRS) we can
+convert names into URIs:\index{search!openphacts}
+
+\begin{Verbatim}
+cwHits = openphacts.lookUpCompounds("aspirin")
+\end{Verbatim}
+From the list, we can get a URI with:
+
+\begin{Verbatim}
+compoundURI = cwHits.get(0).getURI()
+\end{Verbatim}
+Another approach to look up a URI for a compound and, as such, find the
+compound in the knowledge base, is to start with an IMolecule:
+
+\begin{Verbatim}
+compoundURI = openphacts.getURI(
+  cdk.fromSMILES("CC(=O)OC1=CC=CC=C1C(=O)O")
+)
+\end{Verbatim}
+If you want to look up information about the search hits, you do:
+
+\begin{Verbatim}
+hitsInfo = openphacts.getCompoundsInfo(cwHits)
+\end{Verbatim}
+Future versions of the manager will likely provide alternative APIs to get
+compound information.
+
+Similar compounds can be looked up using the Tanimoto distance measure, and a
+similarity cut off of 0.8 by default:
+
+\begin{Verbatim}
+similarCompounds = openphacts.findSimilar(
+  cdk.fromSMILES("CC(=O)OC1=CC=CC=C1C(=O)O")
+)
+\end{Verbatim}
+If you find that list too long, you can increase the minimal similarity to, for
+example, 0.95:
+
+\begin{Verbatim}
+similarCompounds = openphacts.findSimilar(
+  cdk.fromSMILES("CC(=O)OC1=CC=CC=C1C(=O)O"), 0.95
+)
+\end{Verbatim}
+
 \section{The opentox manager}\index{manager!opentox}\index{opentox}
 
 \begin{tabular}{ll}
@@ -953,58 +1004,6 @@ And we can search compounds based on a label:\index{search!pubchem}
 \begin{Verbatim}
 pubchem.search("tamoxifen")
 \end{Verbatim}
-
-\section{The openphacts manager}\index{manager!openphacts}\index{openphacts}
-
-Open PHACTS\index{Open PHACTS} is a semantic web-based knowledge platform under
-development to support drug discovery~\cite{Williams2012}. It provides a
-REST-like interface of which some of the methods are exposed by the openphacts
-managers. Because it is a semantic web platform, compounds, diseases, proteins,
-and pathways are all identified with URIs. Practically, however, we start with
-a name, but usign the Open PHACTS ``identity resolution service'' (IRS) we can
-convert names into URIs:\index{search!openphacts}
-
-\begin{Verbatim}
-cwHits = openphacts.lookUpCompounds("aspirin")
-\end{Verbatim}
-From the list, we can get a URI with:
-
-\begin{Verbatim}
-compoundURI = cwHits.get(0).getURI()
-\end{Verbatim}
-Another approach to look up a URI for a compound and, as such, find the
-compound in the knowledge base, is to start with an IMolecule:
-
-\begin{Verbatim}
-compoundURI = openphacts.getURI(
-  cdk.fromSMILES("CC(=O)OC1=CC=CC=C1C(=O)O")
-)
-\end{Verbatim}
-If you want to look up information about the search hits, you do:
-
-\begin{Verbatim}
-hitsInfo = openphacts.getCompoundsInfo(cwHits)
-\end{Verbatim}
-Future versions of the manager will likely provide alternative APIs to get
-compound information.
-
-Similar compounds can be looked up using the Tanimoto distance measure, and a
-similarity cut off of 0.8 by default:
-
-\begin{Verbatim}
-similarCompounds = openphacts.findSimilar(
-  cdk.fromSMILES("CC(=O)OC1=CC=CC=C1C(=O)O")
-)
-\end{Verbatim}
-If you find that list too long, you can increase the minimal similarity to, for
-example, 0.95:
-
-\begin{Verbatim}
-similarCompounds = openphacts.findSimilar(
-  cdk.fromSMILES("CC(=O)OC1=CC=CC=C1C(=O)O"), 0.95
-)
-\end{Verbatim}
-
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
