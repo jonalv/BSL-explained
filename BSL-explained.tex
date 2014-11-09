@@ -875,7 +875,49 @@ chemspider.substructureSearch(
 \end{Verbatim}
 
 \section{The google manager}\index{manager!google}\index{google}
-\todo{Egon should write this}
+
+Google Drive is an convenient online collaboration tool, though it does
+require an account, and the Spreadsheet functionality allows sharing data between
+researchers. Bioclipse has functionality to extract data from online Google
+Spreadsheets. For this to work, you need to have a password for an app, as
+your Google account password cannot be used. This specific, 16 character, password
+needs to be manually created using your webbrowser, following this link:
+\url{https://security.google.com/settings/security/apppasswords}. Create a new
+App password (\textit{"Other (Customized name)"}) and use this password in Bioclipse:
+
+\begin{Verbatim}
+google.setUserCredentials(
+  "your.account", "16charpassword"
+)
+\end{Verbatim}
+
+This call will not check the credentials, but set it for later calls to this
+manager. For example, it will be used when you list all spreadsheets on your
+account:
+
+\begin{Verbatim}
+google.listSpreadsheets()
+\end{Verbatim}
+
+For a particular spreadsheet you can then list all worksheets:
+
+\begin{Verbatim}
+google.listWorksheets(
+  "ORCID @ Maastricht University"
+)
+\end{Verbatim}
+
+And with both the spreadsheet name and one of its worksheets, I can download
+this as a \textsc{StringMatrix}:
+
+\begin{Verbatim}
+data = google.loadWorksheet(
+  "ORCID @ Maastricht University",
+  "with works"
+)
+\end{Verbatim}
+
+Of course, the names need to match a spreadsheet on your Google Drive.
 
 \section{The openphacts manager}\index{manager!openphacts}\index{openphacts}
 
