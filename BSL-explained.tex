@@ -692,6 +692,13 @@ mol = opsin.parseIUPACName(
 \chapter{Semantic Web}
 \begin{refsection}
 
+Semantic Web technologies are the new glue to link different data sources. Bioclipse
+provides support for several of the technologies, including general
+Resource Description Format (RDF) support\index{Resource Description Format}\index{RDF},
+the SPARQL query language\index{SPARQL}, and the Web Ontology Langauge
+(OWL)\index{OWL}\index{Web Ontology Language}. This chapter outlines how these
+technologies can be used in Bioclipse.
+
 \section{The rdf manager}\index{manager!rdf}\index{rdf}
 
 \begin{tabular}{ll}
@@ -869,6 +876,46 @@ violations:\index{checkVioloations}
 \begin{Verbatim}
 owlapi.checkVioloations(ontology)
 \end{Verbatim}
+
+\section{The ldf manager}\index{manager!ldf}\index{ldf}
+
+Linked Data Fragments (LDF)\index{Linked Data Fragments} are a novel technology allowing
+distributed querying. The LDF software used in Bioclipse provides the functionality
+by exposing a \emph{fragment} as a RDF store. That is very fortunate, because it
+means we can automatically integrate it with the existing RDF functionality, for example
+provided by the \emph{rdf} manager. For example, we can query for and validate CAS
+registry numbers in WikiData:
+
+\begin{Verbatim}
+wikidataldf = ldf.createStore(
+  "http://data.wikidataldf.com/wikidata"
+)
+
+identifier = "P231"
+
+sparql = """
+PREFIX wd: <http://www.wikidata.org/entity/>
+
+SELECT ?compound ?id WHERE {
+  ?compound wd:${identifier}s [ wd:${identifier}v ?id ] .
+}
+"""
+mappings = rdf.sparql(wikidataldf, sparql)
+
+// safe to a file
+for (i=1; i<=mappings.rowCount; i++) {
+  casNo = mappings.get(i, "id")
+  compound = mappings.get(i, "compound")
+  if (!cdk.isValidCAS(casNo)) {
+    js.say(
+      "Compound " + compound + " has an " +
+      " invalid CAS registry number: " +
+      casNo
+    );
+  }
+}
+\end{Verbatim}
+
 
 
 \printbibliography[heading=subbibliography]
