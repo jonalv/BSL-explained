@@ -8,7 +8,7 @@
 \usepackage[lining]{ebgaramond}
 \usepackage{makeidx}
 \usepackage{fancyvrb}
-\usepackage[backend=biber,style=authoryear,citestyle=numeric-comp,sorting=none]{biblatex}\addbibresource{main.bib}
+\usepackage[backend=biber,style=authoryear,citestyle=numeric-comp,sorting=none,firstinits=true]{biblatex}\addbibresource{main.bib}
 
 \usepackage[textsize=small, linecolor=magenta, bordercolor=magenta,
             backgroundcolor=magenta, colorinlistoftodos]{todonotes}
@@ -19,6 +19,7 @@
 \semiisopage[9]
 \checkandfixthelayout
 
+\setlength{\parindent}{0cm}
 
 \usepackage{hyperref}
 
@@ -199,10 +200,12 @@ restarts with the new features.
 
 \section{Scripting Languages}
 
-Bioclipse supports scripting in two programming languages:
-JavaScript\index{JavaScript} and Groovy\index{Groovy}. Support for other
-programming languages is possible, but needs some additional funding for
-development. Both these languages are enriched with domain extensions.
+Bioclipse supports scripting in three programming languages:
+JavaScript\index{JavaScript}, Groovy\index{Groovy}, and Python\index{Python}.
+Support for other programming languages is possible, but needs some additional
+funding for development. All these languages are enriched with domain
+extensions, but it should be noted that the JavaScript support is the
+longest existing and the best developed.
 
 \section{Extensions}
 
@@ -230,13 +233,13 @@ doi cdk
 
 \section{Domain Objects}
 
-But script extensions are not enough. If they cannot communicate which each
-other, then it does not make sense. The primary integration is dealt with the
-scripting language.\todo{This is very unclear} But the other thing is that the
-managers need a common data model. This is what the domain objects are
-about\index{domain object}.
+Script extensions are not enough to do bio- and cheminformatics. If extension
+cannot exchange data with each other, it will not really be useful. Embedding
+of the extensions in the same scripting language is the first step, but
+these extensions also need a common data model. This is what the domain objects are
+for\index{domain object}.
 
-For example, Bioclipse knows the following domain objects:
+For example, Bioclipse knows the following domain objects used in the sciences:
 \vspace{0.25cm}
 
 \begin{tabular}{ l l }
@@ -245,7 +248,11 @@ For example, Bioclipse knows the following domain objects:
   IProteinCrystal\index{IProteinCrystal} & a protein crystal structure \\
 \end{tabular}
 
+Furthermore, a further set of more general objects are defined:
 
+\begin{tabular}{ l l }
+  IRDFStore\index{IRDFStore}\index{RDF} & a triple store \\
+\end{tabular}
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
@@ -256,9 +263,16 @@ For example, Bioclipse knows the following domain objects:
 \chapter{Core functionality}
 \begin{refsection}
 
+The core functionality of Bioclipse is provided by a set of managers which are part
+of the default Bioclipse distribution. This includes the \textit{bioclipse},
+\textit{js}, \textit{ui}, and \textit{gist} managers.
+
 \section{The bioclipse manager}\index{manager!bioclipse}\index{bioclipse}
 
-One core manager is the \emph{bioclipse} manager. For example, it has
+One core manager is the \emph{bioclipse} manager. 
+
+\subsection{Project and file management}
+The \emph{bioclipse} manager has, for example,
 functionality to convert Eclipse-style paths, based on projects to full
 operating system-style paths, which you may need in the scripting language. For
 example, given a project in Bioclipse called ``WikiPathways'' with a folder
@@ -277,6 +291,8 @@ dataMap = bioclipse.fullPath(
 );
 gpmlFiles = new File(dataMap).listFiles()
 \end{Verbatim}
+
+\subsection{Runtime environment}
 Furthermore, the bioclipse manager has functionality to get some information
 about the running Bioclipse. You can get the version with:\index{version}
 \begin{Verbatim}
@@ -287,21 +303,29 @@ found:\index{logfileLocation}
 \begin{Verbatim}
 bioclipse.logfileLocation()
 \end{Verbatim}
+And provide the locations of a few Bioclipse websites\index{Bioclipse wiki}\index{Planet Bioclipse}\index{Bioclipse Bug Tracker}:
+\begin{Verbatim}
+bioclipse.wiki()
+bioclipse.planet()
+bioclipse.bugTracker()
+\end{Verbatim}
+
 It can be used to test if there is an Internet
 connection:\index{isOnline}
 \begin{Verbatim}
 bioclipse.isOnline()
 \end{Verbatim}
+But it can also fail if Bioclipse does not have active Internet
+access:\index{assumeOnline}
+\begin{Verbatim}
+bioclipse.assumeOnline()
+\end{Verbatim}
+
 The manager can be used to validate some of these assumptions. For example, it
 can be used to test which Bioclipse version we are running, or make an
 assertion on the minimally required version:\index{requireVersion}
 \begin{Verbatim}
 bioclipse.requireVersion("2.6.1")
-\end{Verbatim}
-But also fail if Bioclipse does not have active Internet
-access:\index{assumeOnline}
-\begin{Verbatim}
-bioclipse.assumeOnline()
 \end{Verbatim}
 The bioclipse manager is also the place to look if you would like to download a
 web page, such as the front page of the Dutch newspaper "De
@@ -325,10 +349,18 @@ gist:\index{download!gist}
 gist.download(6282642)
 \end{Verbatim}
 
+\section{The js manager}\index{manager!js}\index{js}
+The \emph{js} manager is one specific for the JavaScript environment. It has a few
+commands that allow you to interact with the console, for example. To clear the
+content and write something in the JavaScript console you can use:
+\begin{Verbatim}
+js.clear()
+js.say("Hello world!")
+\end{Verbatim}
 
 \section{The ui manager}\index{manager!ui}\index{ui}
 
-The second core manager is the \emph{ui} manager. It has user interface related
+Another core manager is the \emph{ui} manager. It has user interface related
 functionality. For example, we can use it to test if a file is available from
 the Bioclipse workspace:\index{fileExists}
 
@@ -337,6 +369,20 @@ knowledgebase = "/WikiPathways/chebi.owl";
 if (ui.fileExists(knowledgebase)) {
 }
 \end{Verbatim}
+
+If we combine this with three further commands, we have a means to modify the
+content of files:\index{append}\index{remove}\index{newFile}
+\begin{Verbatim}
+outFilename = "/eNanoMapper/affinity.ttl"
+if (ui.fileExists(outFilename)) {
+  ui.remove(outFilename)
+  ui.newFile(outFilename)
+}
+ui.append(outFilename, rdf.asTurtle(store))
+\end{Verbatim}
+
+\subsection{An Interactive User Interface}
+
 Importantly, this manager also takes care of interaction with the Bioclipse
 user interface itself. For example, we can use it to open editors for
 particular blobs of data:\index{open}
@@ -345,8 +391,41 @@ particular blobs of data:\index{open}
 ui.open(cdk.fromSMILES("c1=cc=cc=c1"))
 \end{Verbatim}
 
-\section{The js manager}
-\todo{extend}
+And it can show a particular file in the Bioclipse Navigator:\index{Bioclipse Navigator}\index{revealAndSelect}
+\begin{Verbatim}
+ui.revealAndSelect("/eNanoMapper/affinity.ttl")
+\end{Verbatim}
+
+\section{The xml manager}\index{manager!xml}\index{xml}\index{XML}
+
+There is also an \emph{xml} manager to work with XML files. For example, we can test if the
+file is well-formed:
+\begin{Verbatim}
+xml.isWellFormed("/Google/solubility.rdf")
+\end{Verbatim}
+
+And list all the XML namespaces in that file:
+\begin{Verbatim}
+xml.listNamespaces("/Google/solubility.rdf")
+\end{Verbatim}
+
+Validation is also possible, using the information in the XML file itself:
+\begin{Verbatim}
+xml.validate("/Google/solubility.rdf")
+\end{Verbatim}
+This has the disadvantages that this information must be provided and that you likely
+need internet access. However, you can also validate against a file you provide:
+\begin{Verbatim}
+xml.validateAgainstRelaxNG(
+  "/Google/solubility.rdf", relaxNGSchemaFile
+)
+xml.validateAgainstSchematron(
+  "/Google/solubility.rdf", schematronFile
+)
+xml.validateAgainstXMLSchema(
+  "/Google/solubility.rdf", xmlSchemaFile
+)
+\end{Verbatim}
 
 
 %\printbibliography[heading=subbibliography]
@@ -453,13 +532,14 @@ Development Kit\index{Chemistry Development Kit}\index{CDK}
 (\textsc{cdk})~\cite{Steinbeck2003,Steinbeck2006} and for this there is the
 \emph{cdk} manager.
 
-The cdk manager is one with many features. One is to valid\todo{validate?}
-\textsc{cas}\todo{explain \textsc{cas}} registry number:\index{CAS registry
-number}
+The cdk manager is one with many features. One is to validate
+\textsc{CAS} registry numbers, identifiers used by the Chemical Abstract
+Services:\index{CAS registry number}
 
 \begin{Verbatim}
 cdk.isValidCAS("50-00-0")
 \end{Verbatim}
+
 But let's go to the more interesting functionality around chemical graphs. For
 example, let's see how we can create molecular structures from a SMILES
 string:\index{SMILES}\index{fromSMILES}
@@ -672,8 +752,9 @@ method:\index{size}
 rdf.size(knowledgebase);
 \end{Verbatim}
 
-And the see the collected triples as Turtle\todo{unclear, explain this a bit
-more}, you can use:\index{Turtle}\index{asTurtle}
+And the collected set of triples can be serialized as Turtle, which
+is one of the easier to read serialization formats of RDF triples.
+For this, you can use:\index{Turtle}\index{asTurtle}
 
 \begin{Verbatim}
 rdf.asTurtle(knowledgebase);
