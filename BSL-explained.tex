@@ -182,31 +182,6 @@ this cheat sheet before you start exploring Bioclipse on your own.
 \includegraphics[width=1\textwidth]{images/cheatSheet.png}
 \end{center}
 
-\subsection{Updating and installing new features} 
-Bioclipse is a highly customizable piece of software. New features and new
-versions of features can be installed as needed in your Bioclipse
-installation.
-
-When Bioclipse starts, it checks the update site for new versions of what is
-already installed. If new versions are found, you are given the option to
-download them. If you choose to do so, the new versions will be downloaded.
-Once this is done, Bioclipse must be restarted to allow the new features to be
-used.
-
-Bioclipse ships with, among other things, components for handling molecules but
-more advanced things like, for example, OpenTox support must be installed
-separately. To do this click \texttt{Install} in the top menu and then choose
-\texttt{New}~\texttt{Feature}\ldots\ This brings up a dialog showing all
-features available for installation. By clicking the check box named
-\texttt{Show} \texttt{installed} you can also see what features are already
-installed in your workbench.
-
-\begin{center}
-\includegraphics[width=0.95\textwidth]{images/installFeatures.png}
-\end{center}
-Select what you want to install, accept the licenses and wait while Bioclipse
-restarts with the new features.
-
 
 \section{Scripting Languages}
 
@@ -240,6 +215,87 @@ to get help for the cdk manager, you type:\index{doi}
 \begin{Verbatim}
 doi cdk
 \end{Verbatim}
+
+\subsection{Updating and installing new features} 
+Bioclipse is a highly customizable piece of software. New features and new
+versions of features can be installed as needed in your Bioclipse
+installation.
+
+When Bioclipse starts, it checks the update site for new versions of what is
+already installed. If new versions are found, you are given the option to
+download them. If you choose to do so, the new versions will be downloaded.
+Once this is done, Bioclipse must be restarted to allow the new features to be
+used.
+
+Bioclipse ships with, among other things, components for handling molecules but
+more advanced things like, for example, OpenTox support must be installed
+separately. To do this click \texttt{Install} in the top menu and then choose
+\texttt{New}~\texttt{Feature}\ldots\ This brings up a dialog showing all
+features available for installation. By clicking the check box named
+\texttt{Show} \texttt{installed} you can also see what features are already
+installed in your workbench.
+
+\begin{center}
+\includegraphics[width=0.95\textwidth]{images/installFeatures.png}
+\end{center}
+
+Select what you want to install, accept the licenses and wait while Bioclipse
+restarts with the new features.
+
+\subsubsection{Installing beta extensions}
+
+However, the update site providing the features above, does not normally have
+newer extensions, particularly not those available for Bioclipse 2.6.2 available
+from the nightly build service. This section hopefully provides enough details
+to allow the readers to install other Bioclipse extensions too.
+
+The first step is to enable the \texttt{Advanced Mode}; that is, unless you are
+advanced, forget about this. Fortunately, the fact that you have not given up on
+reading my blog yet is a good indicated you are advanced. Go to the
+\texttt{Window} menu and select \texttt{Preferences} and enable the \texttt{Advanced Mode}
+in the dialog, as shown here:
+
+\begin{center}
+\includegraphics[width=0.65\textwidth]{images/bcAdvancedMode.png}
+\end{center}
+
+When done, click Apply and close the dialog with OK. 
+
+The advanced mode you just enablded, basically allows you to add any arbitrary
+update sites, like update sites available from the Uppsala build system.
+To add new update sites, use this new option select in the \texttt{Install} menu
+the \texttt{Software from update site...} option:
+
+\begin{center}
+\includegraphics[width=0.65\textwidth]{images/bcUpdateSites.png}
+\end{center}
+
+By clicking the Add button, you go this dialog where you should enter the update
+site information:
+
+\begin{center}
+\includegraphics[width=0.65\textwidth]{images/bcUpdateSites1.png}
+\end{center}
+
+You need to repeat these steps for each update site you like to use, and you
+will likely repeatedly see this dialog, though the content may change from time to
+time (the later sections in the book mention various update sites). The
+information you need to enter is (the name is not too important and can be something
+else that makes sense to you):
+
+\begin{enumerate}
+\item Name: Bioclipse RDF Update Site
+\item Location: \url{http://pele.farmbio.uu.se/jenkins/job/Bioclipse.rdf/lastSuccessfulBuild/artifact/site.p2/}
+\end{enumerate}
+
+After clicking OK in the above dialog, you will return to the Available Software dialog (shown earlier).
+The Available Software dialog will now show a list of features available from the just added update site.
+If you select your new update site, the dialog will show you the features that you can install from
+this update site:
+
+\begin{center}
+\includegraphics[width=0.65\textwidth]{images/bcUpdateSites2.png}
+\end{center}
 
 \section{Domain Objects}
 
