@@ -928,6 +928,7 @@ for (var i = 0; i < imported.size(); i++) {
   )
 }
 \end{Verbatim}
+
 Similarly, you can list all the classes defined by the ontology or imported
 ontologies:\index{showClasses}
 
@@ -939,11 +940,14 @@ for (var i = 0; i < imported.size(); i++) {
   )
 }
 \end{Verbatim}
-Finally, the \textsc{owlapi} also provide functionality to check for profile
-violations:\index{checkVioloations}
+
+You can also list classes and properties. For that, the following methods
+are at your disposal:\index{getClasses}\index{getAnnotationProperties}\index{getPropertyDeclarationAxioms}
 
 \begin{Verbatim}
-owlapi.checkVioloations(ontology)
+classes = owlapi.getClasses(ontology)
+annotProps = owlapi.getAnnotationProperties(ontology)
+declaredProps = owlapi.getPropertyDeclarationAxioms(ontology)
 \end{Verbatim}
 
 \section{The ldf manager}\index{manager!ldf}\index{ldf}
